@@ -9,7 +9,7 @@ fi
 app_name="$1"
 app_tags="${@:2}"
 
-eval $(aws ecr get-login --region "$AWS_REGION")
+eval $(aws ecr get-login --no-include-email --region "$AWS_REGION")
 IFS=' ' read -ra tags <<< "$app_tags"
 for tag in "${tags[@]}"; do
   image_tag="$AWS_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$app_name:$tag"
